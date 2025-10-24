@@ -1,13 +1,14 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerLocomotions : MonoBehaviour,PlayerControls.IPlayerLocomotionMapActions
+ [DefaultExecutionOrder(-2)]
+
+public class PlayerLocomotions : MonoBehaviour, PlayerControls.IPlayerLocomotionMapActions
 {
     public PlayerControls PlayerControls { get; private set; }
-    public Vector2 MovementControls{get; private set;}
+    public Vector2 MovementControls { get; private set; }
+
+    public Vector2 LookInput { get; private set; }
 
 
     private void OnEnable()
@@ -24,10 +25,10 @@ public class PlayerLocomotions : MonoBehaviour,PlayerControls.IPlayerLocomotionM
 
 
     private void OnDisable()
-        {
+    {
         PlayerControls.PlayerLocomotionMap.Disable();
         PlayerControls.PlayerLocomotionMap.RemoveCallbacks(this);
-        }
+    }
 
 
     public void OnMovement(InputAction.CallbackContext context)
@@ -35,5 +36,10 @@ public class PlayerLocomotions : MonoBehaviour,PlayerControls.IPlayerLocomotionM
         MovementControls = context.ReadValue<Vector2>();
         Debug.Log(MovementControls);
         print(MovementControls);
+    }
+
+    public void OnLook(InputAction.CallbackContext context)
+    {
+        LookInput = context.ReadValue<Vector2>();
     }
 }
