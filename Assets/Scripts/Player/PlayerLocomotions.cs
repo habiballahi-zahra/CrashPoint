@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -5,12 +6,24 @@ using UnityEngine.InputSystem;
 
 public class PlayerLocomotions : MonoBehaviour, PlayerControls.IPlayerLocomotionMapActions
 {
+#region  class variable
+
+     [SerializeField] private bool holdToSprint=true;
+
+
+
+    public bool jumpPressed{get; private set;}
+
+    public bool SprintToggledOn{get; private set;}
     public PlayerControls PlayerControls { get; private set; }
     public Vector2 MovementControls { get; private set; }
 
     public Vector2 LookInput { get; private set; }
 
-
+#endregion
+   
+ #region Startup  
+   
     private void OnEnable()
     {
         PlayerControls = new PlayerControls();
@@ -30,7 +43,17 @@ public class PlayerLocomotions : MonoBehaviour, PlayerControls.IPlayerLocomotion
         PlayerControls.PlayerLocomotionMap.RemoveCallbacks(this);
     }
 
+#endregion
 
+#region Late update
+    private void LateUpdate()
+        {
+            jumpPressed=false;
+        }
+
+#endregion
+
+#region Input CallBack
     public void OnMovement(InputAction.CallbackContext context)
     {
         MovementControls = context.ReadValue<Vector2>();
@@ -42,4 +65,34 @@ public class PlayerLocomotions : MonoBehaviour, PlayerControls.IPlayerLocomotion
     {
         LookInput = context.ReadValue<Vector2>();
     }
+
+    public void OnNewaction(InputAction.CallbackContext context)
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public void OnToggleSprint(InputAction.CallbackContext context)
+    {
+        if(context.performed)
+        {
+            SprintToggledOn=holdToSprint||!SprintToggledOn;
+
+        }
+
+        else if(context.canceled)
+        {
+            SprintToggledOn=!holdToSprint && SprintToggledOn;
+
+        }
+    }
+
+    public void OnJump(InputAction.CallbackContext context)
+    {
+        if(!context.performed)
+        {
+            return;
+        }
+        jumpPressed=true;
+    }
+#endregion
 }

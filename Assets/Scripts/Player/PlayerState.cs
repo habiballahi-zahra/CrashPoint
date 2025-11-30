@@ -4,9 +4,27 @@ using UnityEngine;
 
 public class PlayerState : MonoBehaviour
 {
-    [SerializeField] public PlayerMovementState CurrentPlayerMovementState{ get; private set; }
+    [field:SerializeField] public PlayerMovementState CurrentPlayerMovementState{ get; private set; }=PlayerMovementState.Idling;
 
-    public enum PlayerMovementState
+
+    public void SetPlayerMovementState(PlayerMovementState playerMovementState)
+    {
+        
+        CurrentPlayerMovementState=playerMovementState;
+    }
+
+    public bool InGroundedState()
+        {
+            return  CurrentPlayerMovementState==PlayerMovementState.Idling||
+                    CurrentPlayerMovementState==PlayerMovementState.Walking||
+                    CurrentPlayerMovementState==PlayerMovementState.Running||
+                    CurrentPlayerMovementState==PlayerMovementState.Sprinting;
+        }
+}
+
+
+
+public enum PlayerMovementState
 
     {
         Idling = 0,
@@ -19,4 +37,3 @@ public class PlayerState : MonoBehaviour
 
 
     }
-}
