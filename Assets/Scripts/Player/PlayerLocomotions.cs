@@ -1,98 +1,88 @@
-using Unity.VisualScripting;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
- [DefaultExecutionOrder(-2)]
-
-public class PlayerLocomotions : MonoBehaviour, PlayerControls.IPlayerLocomotionMapActions
+namespace GinjaGaming.FinalCharacterController
 {
-#region  class variable
-
-     [SerializeField] private bool holdToSprint=true;
-
-
-
-    public bool jumpPressed{get; private set;}
-
-    public bool SprintToggledOn{get; private set;}
-    public PlayerControls PlayerControls { get; private set; }
-    public Vector2 MovementControls { get; private set; }
-
-    public Vector2 LookInput { get; private set; }
-
-#endregion
-   
- #region Startup  
-   
-    private void OnEnable()
+    [DefaultExecutionOrder(-2)]
+    public class PlayerLocomotions : MonoBehaviour, PlayerControls.IPlayerLocomotionMapActions
     {
-        PlayerControls = new PlayerControls();
-        PlayerControls.Enable();
+        #region Class Variables
+        [SerializeField] private bool holdToSprint = true;
+        public PlayerControls PlayerControls { get; private set; }
+        public Vector2 MovementControls { get; private set; }
+        public Vector2 LookInput { get; private set; }
+        public bool JumpPressed { get; private set; }
+        public bool SprintToggledOn { get; private set; }
+        public bool WalkToggledOn { get; private set; }
+        #endregion
 
-        PlayerControls.PlayerLocomotionMap.Enable();
-        //  Debug.Log("enabaled");
-        PlayerControls.PlayerLocomotionMap.SetCallbacks(this);
-        Debug.Log("PlayerControls enabled");
-
-    }
-
-
-    private void OnDisable()
-    {
-        PlayerControls.PlayerLocomotionMap.Disable();
-        PlayerControls.PlayerLocomotionMap.RemoveCallbacks(this);
-    }
-
-#endregion
-
-#region Late update
-    private void LateUpdate()
+        #region Startup
+        private void OnEnable()
         {
-            jumpPressed=false;
+            PlayerControls = new PlayerControls();
+            PlayerControls.Enable();
+
+            PlayerControls.PlayerLocomotionMap.Enable();
+            PlayerControls.PlayerLocomotionMap.SetCallbacks(this);
         }
 
-#endregion
-
-#region Input CallBack
-    public void OnMovement(InputAction.CallbackContext context)
-    {
-        MovementControls = context.ReadValue<Vector2>();
-        Debug.Log(MovementControls);
-        print(MovementControls);
-    }
-
-    public void OnLook(InputAction.CallbackContext context)
-    {
-        LookInput = context.ReadValue<Vector2>();
-    }
-
-    public void OnNewaction(InputAction.CallbackContext context)
-    {
-        throw new System.NotImplementedException();
-    }
-
-    public void OnToggleSprint(InputAction.CallbackContext context)
-    {
-        if(context.performed)
+        private void OnDisable()
         {
-            SprintToggledOn=holdToSprint||!SprintToggledOn;
+            PlayerControls.PlayerLocomotionMap.Disable();
+            PlayerControls.PlayerLocomotionMap.RemoveCallbacks(this);
+        }
+        #endregion
 
+        #region Late Update Logic
+        private void LateUpdate()
+        {
+            JumpPressed = false;
+        }
+        #endregion
+
+        #region Input Callbacks
+        public void OnMovement(InputAction.CallbackContext context)
+        {
+            MovementControls = context.ReadValue<Vector2>();
+            print(MovementControls);
         }
 
-        else if(context.canceled)
+        public void OnLook(InputAction.CallbackContext context)
         {
-            SprintToggledOn=!holdToSprint && SprintToggledOn;
-
+            LookInput = context.ReadValue<Vector2>();
         }
-    }
 
-    public void OnJump(InputAction.CallbackContext context)
-    {
-        if(!context.performed)
+        public void OnToggleSprint(InputAction.CallbackContext context)
         {
-            return;
+            if (context.performed)
+            {
+                SprintToggledOn = holdToSprint || !SprintToggledOn;
+            }
+            else if (context.canceled)
+            {
+                SprintToggledOn = !holdToSprint && SprintToggledOn;
+            }
         }
-        jumpPressed=true;
+
+        public void OnJump(InputAction.CallbackContext context)
+        {
+            if (!context.performed)
+                return;
+
+            JumpPressed = true;
+        }
+
+        public void OnToggleWalk(InputAction.CallbackContext context)
+        {
+            if (!context.performed)
+                return;
+
+            WalkToggledOn = !WalkToggledOn;
+        }
+
+        
+        #endregion
     }
-#endregion
 }

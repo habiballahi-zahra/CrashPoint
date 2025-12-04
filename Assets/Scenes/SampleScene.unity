@@ -328,6 +328,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7535469805655264556, guid: 84c4b23844cf3de46ba312b9a8028f47, type: 3}
   m_PrefabInstance: {fileID: 3089729645428406895}
   m_PrefabAsset: {fileID: 0}
+--- !u!20 &1028254556 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 178672310082686875, guid: 84c4b23844cf3de46ba312b9a8028f47, type: 3}
+  m_PrefabInstance: {fileID: 3089729645428406895}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1948505212
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -340,7 +345,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a3f2e1f96511424e893ff76cd1fcbc7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 8642389803346367063}
+  _animator: {fileID: 8642389803346367063}
   locomotionBlendSpeed: 4
 --- !u!114 &1948505213
 MonoBehaviour:
@@ -634,11 +639,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3750240413237010676, guid: 84c4b23844cf3de46ba312b9a8028f47, type: 3}
       propertyPath: drag
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3750240413237010676, guid: 84c4b23844cf3de46ba312b9a8028f47, type: 3}
+      propertyPath: gravity
       value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 3750240413237010676, guid: 84c4b23844cf3de46ba312b9a8028f47, type: 3}
       propertyPath: runSpeed
-      value: 4
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3750240413237010676, guid: 84c4b23844cf3de46ba312b9a8028f47, type: 3}
+      propertyPath: walkSpeed
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 3750240413237010676, guid: 84c4b23844cf3de46ba312b9a8028f47, type: 3}
       propertyPath: LookLimitV
@@ -654,16 +667,32 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3750240413237010676, guid: 84c4b23844cf3de46ba312b9a8028f47, type: 3}
       propertyPath: sprintSpeed
-      value: 7
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 3750240413237010676, guid: 84c4b23844cf3de46ba312b9a8028f47, type: 3}
+      propertyPath: _playerCamera
+      value: 
+      objectReference: {fileID: 1028254556}
+    - target: {fileID: 3750240413237010676, guid: 84c4b23844cf3de46ba312b9a8028f47, type: 3}
       propertyPath: runAcceleration
-      value: 35
+      value: 70
+      objectReference: {fileID: 0}
+    - target: {fileID: 3750240413237010676, guid: 84c4b23844cf3de46ba312b9a8028f47, type: 3}
+      propertyPath: walkAcceleration
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 3750240413237010676, guid: 84c4b23844cf3de46ba312b9a8028f47, type: 3}
+      propertyPath: rotateToTargetTime
+      value: 0.67
       objectReference: {fileID: 0}
     - target: {fileID: 3750240413237010676, guid: 84c4b23844cf3de46ba312b9a8028f47, type: 3}
       propertyPath: sprintAcceleration
-      value: 70
+      value: 90
       objectReference: {fileID: 0}
+    - target: {fileID: 3750240413237010676, guid: 84c4b23844cf3de46ba312b9a8028f47, type: 3}
+      propertyPath: _characterController
+      value: 
+      objectReference: {fileID: 8642389803346367064}
     - target: {fileID: 5081693768369462378, guid: 84c4b23844cf3de46ba312b9a8028f47, type: 3}
       propertyPath: m_SkinWidth
       value: 0.0001
@@ -785,6 +814,11 @@ GameObject:
 --- !u!95 &8642389803346367063 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 6705581679738349624, guid: 84c4b23844cf3de46ba312b9a8028f47, type: 3}
+  m_PrefabInstance: {fileID: 3089729645428406895}
+  m_PrefabAsset: {fileID: 0}
+--- !u!143 &8642389803346367064 stripped
+CharacterController:
+  m_CorrespondingSourceObject: {fileID: 5081693768369462378, guid: 84c4b23844cf3de46ba312b9a8028f47, type: 3}
   m_PrefabInstance: {fileID: 3089729645428406895}
   m_PrefabAsset: {fileID: 0}
 --- !u!81 &9068720520589820057

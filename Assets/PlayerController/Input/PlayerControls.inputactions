@@ -24,15 +24,6 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "New action",
-                    "type": "Button",
-                    "id": "4698b481-50f8-4fcc-9d61-294d5475f17d",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
                     "name": "ToggleSprint",
                     "type": "Button",
                     "id": "fca4a637-79bf-44e3-93e8-39f9c37fa903",
@@ -45,6 +36,15 @@
                     "name": "Jump",
                     "type": "Button",
                     "id": "4a3c0148-6ffd-4e5e-81e0-30bf8963d8c0",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "ToggleWalk",
+                    "type": "Button",
+                    "id": "3cf89948-c331-405b-a31c-ab6237f3b84e",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -175,17 +175,6 @@
                 },
                 {
                     "name": "",
-                    "id": "d7ef1ac9-d759-4a6c-8195-bd0b3e29deb4",
-                    "path": "",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "New action",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "9bcb4580-065f-42ff-bf39-0fcba30121a2",
                     "path": "<Keyboard>/leftShift",
                     "interactions": "",
@@ -203,6 +192,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d14ab739-3a1b-4412-8c6e-f43589f7aee2",
+                    "path": "<Keyboard>/ctrl",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ToggleWalk",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
