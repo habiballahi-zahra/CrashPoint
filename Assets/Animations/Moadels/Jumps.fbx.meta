@@ -135,7 +135,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: human_male_jump_all
+      name: Jump_Up
       takeName: human_male_jump_all
       internalID: 7275300753899294233
       firstFrame: 2
