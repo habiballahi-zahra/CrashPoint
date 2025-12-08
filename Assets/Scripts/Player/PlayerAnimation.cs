@@ -1,17 +1,14 @@
-using System.Collections;
-using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
-namespace GinjaGaming.FinalCharacterController
-{
+
     public class PlayerAnimation : MonoBehaviour
-    {
-        [SerializeField] private Animator _animator;
+    { [SerializeField] private Animator _animator;
         [SerializeField] private float locomotionBlendSpeed = 4f;
 
         private PlayerLocomotions _playerLocomotionInput;
         private PlayerState _playerState;
-        private PlayerController _playerController; 
+        private PlayerController _playerController;
         private PlayerActionInput _playerActionsInput;
 
         // Locomotion
@@ -23,17 +20,15 @@ namespace GinjaGaming.FinalCharacterController
         private static int isFallingHash = Animator.StringToHash("isFalling");
         private static int isJumpingHash = Animator.StringToHash("isJumping");
 
-         
         // Actions
         private static int isAttackingHash = Animator.StringToHash("isAttacking");
         private static int isGatheringHash = Animator.StringToHash("isGathering");
+        private static int isPlayingActionHash = Animator.StringToHash("isPlayingAction");
+        private int[] actionHashes;
 
-         // Camera/Rotation
-
+        // Camera/Rotation
         private static int isRotatingToTargetHash = Animator.StringToHash("isRotatingToTarget");
         private static int rotationMismatchHash = Animator.StringToHash("rotationMismatch");
-
-       
 
         private Vector3 _currentBlendInput = Vector3.zero;
 
@@ -47,6 +42,8 @@ namespace GinjaGaming.FinalCharacterController
             _playerState = GetComponent<PlayerState>();
             _playerController = GetComponent<PlayerController>();
             _playerActionsInput = GetComponent<PlayerActionInput>();
+
+            actionHashes = new int[] { isGatheringHash };
         }
 
         private void Update()
@@ -62,6 +59,7 @@ namespace GinjaGaming.FinalCharacterController
             bool isJumping = _playerState.CurrentPlayerMovementState == PlayerMovementState.Jumping;
             bool isFalling = _playerState.CurrentPlayerMovementState == PlayerMovementState.Falling;
             bool isGrounded = _playerState.InGroundedState();
+            bool isPlayingAction = actionHashes.Any(hash => _animator.GetBool(hash));
 
             bool isRunBlendValue = isRunning || isJumping || isFalling;
 
@@ -78,6 +76,7 @@ namespace GinjaGaming.FinalCharacterController
             _animator.SetBool(isRotatingToTargetHash, _playerController.IsRotatingToTarget);
             _animator.SetBool(isAttackingHash, _playerActionsInput.AttackPressed);
             _animator.SetBool(isGatheringHash, _playerActionsInput.GatherPressed);
+            _animator.SetBool(isPlayingActionHash, isPlayingAction);
 
             _animator.SetFloat(inputXHash, _currentBlendInput.x);
             _animator.SetFloat(inputYHash, _currentBlendInput.y);
@@ -85,4 +84,3 @@ namespace GinjaGaming.FinalCharacterController
             _animator.SetFloat(rotationMismatchHash, _playerController.RotationMismatch);
         }
     }
-}
