@@ -20,6 +20,13 @@ public class PlayerState : MonoBehaviour
                     CurrentPlayerMovementState==PlayerMovementState.Running||
                     CurrentPlayerMovementState==PlayerMovementState.Sprinting;
         }
+         public bool IsStateGroundedState(PlayerMovementState movementState)
+        {
+            return movementState == PlayerMovementState.Idling ||
+                   movementState == PlayerMovementState.Walking ||
+                   movementState == PlayerMovementState.Running ||
+                   movementState == PlayerMovementState.Sprinting;
+        }
 }
 
 
