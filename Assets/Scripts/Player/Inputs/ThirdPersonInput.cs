@@ -10,7 +10,7 @@ public class ThirdPersonInput : MonoBehaviour,PlayerControls.IThirdPersonMapActi
         public Vector2 ScrollInput { get; private set; }
 
         [SerializeField] private CinemachineVirtualCamera _virtualCamera;
-        [SerializeField] private float _cameraZoomSpeed = 0.2f;
+        [SerializeField] private float _cameraZoomSpeed = 0.1f;
         [SerializeField] private float _cameraMinZoom = 1f;
         [SerializeField] private float _cameraMaxZoom = 5f;
 
@@ -57,19 +57,17 @@ public class ThirdPersonInput : MonoBehaviour,PlayerControls.IThirdPersonMapActi
         {
             ScrollInput = Vector2.zero;
         }
+        #endregion
 
+        #region Input Callbacks
+        public void OnScrollCamera(InputAction.CallbackContext context)
+        {
+            if (!context.performed)
+                return;
+
+            Vector2 scrollInput = context.ReadValue<Vector2>();
+            ScrollInput = -1f * scrollInput.normalized * _cameraZoomSpeed;
+        }
+        #endregion
     
-    #endregion
-
-    #region Input Callbacks
-
-    public void OnScrollCamera(InputAction.CallbackContext context)
-    {
-         if (!context.performed)
-            return;
-
-        Vector2 scrollInput = context.ReadValue<Vector2>();
-        ScrollInput = -1f * scrollInput.normalized;
-    }
-    #endregion
 }

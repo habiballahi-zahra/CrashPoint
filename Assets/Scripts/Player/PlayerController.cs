@@ -4,8 +4,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace GinjaGaming.FinalCharacterController
-{
     [DefaultExecutionOrder(-1)]
     public class PlayerController : MonoBehaviour
     {
@@ -293,4 +291,4 @@ namespace GinjaGaming.FinalCharacterController
         }
         #endregion
     }
-}
+
