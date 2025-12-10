@@ -865,14 +865,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _characterController: {fileID: 5081693768369462378}
   _playerCamera: {fileID: 178672310082686875}
-  walkAcceleration: 50
-  walkSpeed: 6
-  runAcceleration: 70
-  runSpeed: 10
-  sprintAcceleration: 90
-  sprintSpeed: 12
+  walkAcceleration: 40
+  walkSpeed: 4
+  runAcceleration: 60
+  runSpeed: 6
+  sprintAcceleration: 80
+  sprintSpeed: 8
   inAirAcceleration: 70
-  drag: 10
+  drag: 25
+  inAirDrag: 10
   gravity: 15
   terminalVelocity: 50
   jumpSpeed: 1
