@@ -37,6 +37,15 @@ Packages/
 .vscode/
 .vsconfig
 
+#Unity Cloud
+
+UnityCloud/
+UnityCollaborate/
+[Aa]ssets/UnityCloud/
+.collab/
+.cloud/
+
+
 # Gradle cache directory
 .gradle/
 
