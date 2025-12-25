@@ -29,6 +29,16 @@ using UnityEngine.InputSystem;
         public float jumpSpeed = 1.0f;
         public float movingThreshold = 0.01f;
 
+
+        [Header("Jump Settings")]
+        [SerializeField] private float baseJumpHeight = 1.2f;          // ارتفاع پایه‌ی پرش در حالت ایستاده
+        [SerializeField] private float runJumpMultiplier = 1.1f;       // ضریب پرش هنگام دویدن
+        [SerializeField] private float sprintJumpMultiplier = 1.25f;   // ضریب پرش هنگام اسپرینت
+        [SerializeField] private float antiBumpForce = 2f;             // نیروی کوچک برای چسباندن پلیر به زمین
+
+
+
+
         [Header("Animation")]
         public float playerModelRotationSpeed = 10f;
         public float rotateToTargetTime = 0.67f;
@@ -60,12 +70,13 @@ using UnityEngine.InputSystem;
         #region Startup
         private void Awake()
         {
-            _playerLocomotionInput = GetComponent<PlayerLocomotions>();
-            _playerState = GetComponent<PlayerState>();
+            _playerLocomotionInput = GetComponent<PlayerLocomotions>(); // گرفتن ورودی‌های حرکت پلیر
+            _playerState = GetComponent<PlayerState>();                 // گرفتن وضعیت فعلی پلیر (Idle, Run, Jump, ...)
 
-            _antiBump = sprintSpeed;
-            _stepOffset = _characterController.stepOffset;
+            _antiBump = antiBumpForce;                                  // antiBump مستقل از سرعت حرکت تنظیم می‌شود
+            _stepOffset = _characterController.stepOffset;              // ذخیره مقدار پیش‌فرض stepOffset
         }
+
         #endregion
 
         #region Update Logic
@@ -114,31 +125,40 @@ using UnityEngine.InputSystem;
 
         private void HandleVerticalMovement()
         {
-            bool isGrounded = _playerState.InGroundedState();
+             bool isGrounded = _playerState.InGroundedState(); // بررسی اینکه پلیر روی زمین هست یا نه
 
-            _verticalVelocity -= gravity * Time.deltaTime;
+    // اعمال گرانش به صورت پیوسته
+    _verticalVelocity -= gravity * Time.deltaTime;
 
-            if (isGrounded && _verticalVelocity < 0)
-                _verticalVelocity = -_antiBump;
+    // اگر روی زمین هستیم و سرعت عمودی منفی شد
+    // مقدار کمی نیروی رو به پایین میدیم تا به زمین بچسبه
+    if (isGrounded && _verticalVelocity < 0f)
+    {
+        _verticalVelocity = -antiBumpForce;
+    }
 
-            if (_playerLocomotionInput.JumpPressed && isGrounded)
-            {
-                _verticalVelocity += Mathf.Sqrt(jumpSpeed * 3 * gravity);
-                _jumpedLastFrame = true;
-            }
+    // اگر دکمه پرش زده شده و پلیر روی زمین است
+    if (_playerLocomotionInput.JumpPressed && isGrounded)
+    {
+        float jumpMultiplier = GetJumpMultiplier(); 
+        // تعیین ضریب پرش بر اساس حالت حرکت (ایستاده، دویدن، اسپرینت)
 
-            if (_playerState.IsStateGroundedState(_lastMovementState) && !isGrounded)
-            {
-                _verticalVelocity += _antiBump;
-            }
+        float jumpForce = Mathf.Sqrt(baseJumpHeight * jumpMultiplier * 2f * gravity);
+        // محاسبه نیروی پرش بر اساس فرمول فیزیکی
 
-            
-            // Clamp at terminal velocity
-            if (Mathf.Abs(_verticalVelocity) > Mathf.Abs(terminalVelocity))
-            {
-                _verticalVelocity = -1f * Mathf.Abs(terminalVelocity);
-            }
+        _verticalVelocity = jumpForce; 
+        // مقدار سرعت عمودی مستقیماً تنظیم می‌شود (نه +=)
+        // تا پرش فقط یک بار و دقیق اعمال شود
 
+        _jumpedLastFrame = true; 
+        // علامت می‌زنیم که فریم قبل پرش انجام شده
+    }
+
+    // محدود کردن سرعت سقوط به terminal velocity
+    if (Mathf.Abs(_verticalVelocity) > Mathf.Abs(terminalVelocity))
+    {
+        _verticalVelocity = -Mathf.Abs(terminalVelocity);
+    }
             
         }
 
@@ -177,6 +197,25 @@ using UnityEngine.InputSystem;
             // Move character (Unity suggests only calling this once per tick)
             _characterController.Move(newVelocity * Time.deltaTime);
         }
+
+
+        private float GetJumpMultiplier()
+        {
+            // بررسی وضعیت حرکتی پلیر
+            switch (_playerState.CurrentPlayerMovementState)
+            {
+                case PlayerMovementState.Sprinting:
+                    return sprintJumpMultiplier; // بیشترین پرش در حالت اسپرینت
+
+                case PlayerMovementState.Running:
+                    return runJumpMultiplier;    // پرش متوسط در حالت دویدن
+
+                default:
+                    return 1f;                   // پرش پایه در حالت ایستاده یا راه رفتن
+            }
+        }
+
+
 
         private Vector3 HandleSteepWalls(Vector3 velocity)
         {
