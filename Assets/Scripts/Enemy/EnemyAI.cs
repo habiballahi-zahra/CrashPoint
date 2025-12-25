@@ -10,6 +10,13 @@ public class EnemyAI : MonoBehaviour
     public NavMeshAgent agent;
     public Transform player;
 
+    [Header("Attack Settings")]
+    public float attackRange = 2f;
+    public int attackDamage = 20;
+    public float attackCooldown = 1.5f;
+    private float lastAttackTime = 0f;
+
+
     [Header("Vision Settings")]
     public float detectionRange = 10f;
     public float losePlayerRange = 15f;
@@ -34,6 +41,9 @@ public class EnemyAI : MonoBehaviour
 
     private void Update()
     {
+        if (GetComponent<Health>().isDead)
+             return;
+
         switch (currentState)
         {
             case EnemyState.Patrol:
@@ -95,6 +105,14 @@ public class EnemyAI : MonoBehaviour
         }
 
         agent.SetDestination(player.position);
+
+                // اگر نزدیک پلیر شد → حمله
+        if (distanceToPlayer <= attackRange)
+        {
+            agent.ResetPath();
+            TryAttack();
+            return;
+        }
     }
 
 
@@ -130,4 +148,32 @@ public class EnemyAI : MonoBehaviour
         float speed = agent.velocity.magnitude;
         anim.SetFloat("Speed", speed);
     }
+
+    // -----------------------------
+    //        ATTACK HANDLER
+    // -----------------------------
+
+    void TryAttack()
+{
+    if (Time.time - lastAttackTime < attackCooldown)
+        return;
+
+    lastAttackTime = Time.time;
+
+    anim.SetTrigger("Attack");
+
+    // ضربه بعد از یک زمان کوتاه زده می‌شود
+    Invoke(nameof(DealDamageToPlayer), 0.5f); // زمان هماهنگ با انیمیشن
+}
+void DealDamageToPlayer()
+{
+    float dist = Vector3.Distance(transform.position, player.position);
+    if (dist <= attackRange)
+    {
+        Health playerHp = player.GetComponent<Health>();
+        playerHp?.TakeDamage(attackDamage);
+    }
+}
+
+
 }

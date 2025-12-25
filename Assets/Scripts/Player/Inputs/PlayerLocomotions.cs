@@ -20,7 +20,7 @@ using UnityEngine.InputSystem;
         private void OnEnable()
         { if (PlayerInputManager.Instance?.PlayerControls == null)
             {
-                Debug.LogError("Player controls is not initialized - cannot enable");
+                // Debug.LogError("Player controls is not initialized - cannot enable");
                 return;
             }
 
@@ -33,7 +33,7 @@ using UnityEngine.InputSystem;
         {
              if (PlayerInputManager.Instance?.PlayerControls == null)
             {
-                Debug.LogError("Player controls is not initialized - cannot disable");
+                // Debug.LogError("Player controls is not initialized - cannot disable");
                 return;
             }
 

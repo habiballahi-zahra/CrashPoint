@@ -21,7 +21,7 @@ public class PlayerActionInput : MonoBehaviour, PlayerControls.IPlayerActionMapA
         {
             if (PlayerInputManager.Instance?.PlayerControls == null)
             {
-                Debug.LogError("Player controls is not initialized - cannot enable");
+                // Debug.LogError("Player controls is not initialized - cannot enable");
                 return;
             }
 
@@ -33,7 +33,7 @@ public class PlayerActionInput : MonoBehaviour, PlayerControls.IPlayerActionMapA
         {
             if (PlayerInputManager.Instance?.PlayerControls == null)
             {
-                Debug.LogError("Player controls is not initialized - cannot disable");
+                // Debug.LogError("Player controls is not initialized - cannot disable");
                 return;
             }
 
