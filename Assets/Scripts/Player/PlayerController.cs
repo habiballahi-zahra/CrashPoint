@@ -162,7 +162,7 @@ using UnityEngine.InputSystem;
             Vector3 cameraRightXZ = new Vector3(_playerCamera.transform.right.x, 0f, _playerCamera.transform.right.z).normalized;
             Vector3 movementDirection = cameraRightXZ * _playerLocomotionInput.MovementControls.x + cameraForwardXZ * _playerLocomotionInput.MovementControls.y;
 
-            Vector3 movementDelta = movementDirection * lateralAcceleration *10* Time.deltaTime;
+            Vector3 movementDelta = movementDirection * lateralAcceleration * Time.deltaTime;
             Vector3 newVelocity = _characterController.velocity + movementDelta;
 
             // Add drag to player
@@ -170,7 +170,7 @@ using UnityEngine.InputSystem;
             float dragMagnitude = isGrounded ? drag : inAirDrag;
             Vector3 currentDrag = newVelocity.normalized * dragMagnitude * Time.deltaTime;
             newVelocity = (newVelocity.magnitude > drag * Time.deltaTime) ? newVelocity - currentDrag : Vector3.zero;
-            newVelocity = Vector3.ClampMagnitude(new Vector3(newVelocity.x, 0f, newVelocity.z), clampLateralMagnitude*100);
+            newVelocity = Vector3.ClampMagnitude(new Vector3(newVelocity.x, 0f, newVelocity.z), clampLateralMagnitude);
             newVelocity.y += _verticalVelocity;
             newVelocity = !isGrounded ? HandleSteepWalls(newVelocity) : newVelocity;
             // Debug.Log(newVelocity);
