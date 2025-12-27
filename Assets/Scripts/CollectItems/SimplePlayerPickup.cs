@@ -112,10 +112,10 @@ public class SimplePlayerPickup : MonoBehaviour
             currentInteractable = closest;
             
             // پیام UI را نمایش بده
-            ShowPrompt($"E : برداشتن {closest.item.itemName}");
+            ShowPrompt($"E : Collect {closest.item.itemName}");
             
             // برای دیباگ در کنسول لاگ بزن
-            Debug.Log($"پیدا شد: {closest.item.itemName} در فاصله {closestDistance:F1} متر");
+            Debug.Log($" found: {closest.item.itemName}in near  {closestDistance:F1} meter");
         }
         // ۵. اگر هیچ شیء‌ای پیدا نشد ولی قبلاً شیء‌ای بود
         else if (closest == null && currentInteractable != null)
@@ -137,7 +137,7 @@ public class SimplePlayerPickup : MonoBehaviour
         if (currentInteractable == null) return;
         
         // پیام دیباگ
-        Debug.Log($"در حال برداشتن: {currentInteractable.item.itemName}");
+        Debug.Log($"Pickupping: {currentInteractable.item.itemName}");
         
         // ۱. انیمیشن برداشت را اجرا کن
         Animator anim = GetComponent<Animator>();
