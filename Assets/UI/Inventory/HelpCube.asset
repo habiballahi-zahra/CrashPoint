@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 423c4496dfd9b0243b8f1a4cdfecc93d, type: 3}
-  m_Name: New Item
+  m_Name: HelpCube
   m_EditorClassIdentifier: 
   itemName: Box
-  icon: {fileID: 21300000, guid: 78b51f543ae48af4a99d67a7cef977c5, type: 3}
+  icon: {fileID: 21300000, guid: 9dd803d9e22063e438c4ff56112de87a, type: 3}
   prefab: {fileID: 3503630340658518348, guid: 737f75f791cd71f4c9ede2aa3051204b, type: 3}
   itemType: 1
