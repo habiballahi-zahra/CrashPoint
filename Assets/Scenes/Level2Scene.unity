@@ -17392,8 +17392,8 @@ MonoBehaviour:
   weapon: {fileID: 543450651854529765}
   rightHand: {fileID: 8525362368105344768}
   leftHand: {fileID: 3009696332617460336}
-  weaponOffset: {x: 0, y: 0, z: -0.06}
-  weaponRotation: {x: -30, y: 200, z: -80}
+  weaponOffset: {x: -0.05, y: 0.05, z: 0.02}
+  weaponRotation: {x: -10, y: -90, z: -90}
   leftHandOffset: {x: 0, y: 0, z: 0}
 --- !u!1 &7814023781843738111
 GameObject:
