@@ -47,6 +47,7 @@ using UnityEngine.InputSystem;
         public float lookSenseH = 0.1f;
         public float lookSenseV = 0.1f;
         public float lookLimitV = 89f;
+        public float rotationTolerance=90f;
 
         [Header("Environment Details")]
         [SerializeField] private LayerMask _groundLayers;
@@ -243,7 +244,7 @@ using UnityEngine.InputSystem;
 
             _playerTargetRotation.x += transform.eulerAngles.x + lookSenseH * _playerLocomotionInput.LookInput.x;
 
-            float rotationTolerance = 90f;
+            // rotationTolerance = 90f;
             bool isIdling = _playerState.CurrentPlayerMovementState == PlayerMovementState.Idling;
             IsRotatingToTarget = _rotatingToTargetTimer > 0;
 
