@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Enemy
   - Interactable
+  - Bullet
+  - Lava
+  - Checkpoint
   layers:
   - Default
   - TransparentFX
