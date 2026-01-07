@@ -12669,15 +12669,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1130191864891151330, guid: 84c4b23844cf3de46ba312b9a8028f47, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.5000001
+      value: 0.5000003
       objectReference: {fileID: 0}
     - target: {fileID: 1130191864891151330, guid: 84c4b23844cf3de46ba312b9a8028f47, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.0068635046
+      value: 0.0068638623
       objectReference: {fileID: 0}
     - target: {fileID: 1130191864891151330, guid: 84c4b23844cf3de46ba312b9a8028f47, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -1.9262192
+      value: -1.9262174
       objectReference: {fileID: 0}
     - target: {fileID: 1136103912867381321, guid: 84c4b23844cf3de46ba312b9a8028f47, type: 3}
       propertyPath: m_LocalPosition.x
@@ -12752,6 +12752,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3750240413237010676, guid: 84c4b23844cf3de46ba312b9a8028f47, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3750240413237010676, guid: 84c4b23844cf3de46ba312b9a8028f47, type: 3}
       propertyPath: walkSpeed
       value: 80
       objectReference: {fileID: 0}
@@ -12775,7 +12779,9 @@ PrefabInstance:
       propertyPath: sprintAcceleration
       value: 250
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 0}
+    - {fileID: 2819501213067937061, guid: 84c4b23844cf3de46ba312b9a8028f47, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -12788,6 +12794,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 3358515368773058563, guid: 84c4b23844cf3de46ba312b9a8028f47, type: 3}
       insertIndex: -1
       addedObject: {fileID: 614309229}
+    - targetCorrespondingSourceObject: {fileID: 3358515368773058563, guid: 84c4b23844cf3de46ba312b9a8028f47, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 614309239}
   m_SourcePrefab: {fileID: 100100000, guid: 84c4b23844cf3de46ba312b9a8028f47, type: 3}
 --- !u!1 &614309186 stripped
 GameObject:
@@ -12836,6 +12845,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e53fd8daed578af4284184b43c5ce959, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &614309239
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 614309186}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bec1f0a9c9535944e985ee2eec5a7210, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <CurrentPlayerMovementState>k__BackingField: 0
 --- !u!1001 &614498428
 PrefabInstance:
   m_ObjectHideFlags: 0
