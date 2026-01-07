@@ -64,6 +64,7 @@ public class ToolboxUI : MonoBehaviour
     // حذف آیتم از UI
     public void RemoveItem(Item item)
     {
+        Debug.Log("remove dictionery");
         if (item == null || !itemUIMap.ContainsKey(item)) return;
         
         // از بین بردن GameObject مربوطه

@@ -6,7 +6,7 @@ public class Interactable : MonoBehaviour
     [Header("Items")]
     public Item item;                    // اطلاعات آیتم
     public float rotationSpeed = 50f;    // سرعت چرخش (برای جلوه بصری)
-    
+    public bool isMove=true;
     [Header("Effects")]
     public GameObject pickupEffect;      // افکت هنگام برداشت
     public AudioClip pickupSound;        // صدای برداشت
@@ -18,11 +18,6 @@ public class Interactable : MonoBehaviour
     {
         initialPosition = transform.position;
         
-        // اگر آیتم تنظیم نشده، خطا بده
-        if (item == null)
-        {
-            Debug.LogError("No Items Set : " + gameObject.name);
-        }
     }
     
     void Update()
@@ -31,10 +26,13 @@ public class Interactable : MonoBehaviour
         if (!isPickedUp)
         {
             transform.Rotate(0, rotationSpeed * Time.deltaTime, 0);
-            
-            // حرکت بالا-پایین (اختیاری)
-            float floatHeight = Mathf.Sin(Time.time * 2f) * 0.1f;
-            transform.position = initialPosition + Vector3.up * floatHeight;
+            if (isMove)
+            {
+                    // حرکت بالا-پایین (اختیاری)
+                float floatHeight = Mathf.Sin(Time.time * 2f) * 0.1f;
+                transform.position = initialPosition + Vector3.up * floatHeight;
+            }
+           
         }
     }
     
