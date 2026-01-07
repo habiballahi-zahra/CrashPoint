@@ -17059,10 +17059,10 @@ GameObject:
   - component: {fileID: 543567785}
   - component: {fileID: 543567804}
   - component: {fileID: 543567803}
-  - component: {fileID: 7736053447132094031}
   - component: {fileID: 7736053447132094032}
   - component: {fileID: 7736053447132094033}
   - component: {fileID: 7736053447132094034}
+  - component: {fileID: 7736053447132094031}
   - component: {fileID: 7736053447132094035}
   m_Layer: 3
   m_Name: ThirdAttackPerson
