@@ -10,6 +10,8 @@ public class Item : ScriptableObject
     public GameObject prefab;                   // مدل ۳بعدی آیتم
     public ItemType itemType = ItemType.General; // نوع آیتم
     
+     [Header("Health Item Settings")]
+    public int healAmount = 0;   // فقط برای آیتم Health استفاده می‌شود
     public enum ItemType
     {
         General,     // آیتم عمومی
@@ -20,10 +22,19 @@ public class Item : ScriptableObject
     }
     
     // این متد زمانی صدا زده می‌شود که آیتم استفاده شود
-    public virtual void Use()
+     public virtual void Use(GameObject user)
     {
-        Debug.Log("استفاده از آیتم: " + itemName);
-        // اینجا می‌توانید منطق استفاده از آیتم را بنویسید
+        if (itemType == ItemType.Health)
+        {
+            Health health = user.GetComponent<Health>();
+            if (health != null && !health.isDead)
+            {
+                health.Heal(healAmount);
+                health.currentHealth =
+                    Mathf.Min(health.currentHealth + healAmount, health.maxHealth);
+            }
+          }
+
     }
 }
 

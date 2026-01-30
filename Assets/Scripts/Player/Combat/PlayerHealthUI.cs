@@ -9,7 +9,7 @@ public class PlayerHealthUI : MonoBehaviour
     void Start()
     {
         UpdateHealth();
-        playerHealth.onHit += UpdateHealth;
+        playerHealth.onHealthChanged += UpdateHealth;
         playerHealth.onDeath += UpdateHealth;
     }
 
@@ -17,14 +17,13 @@ public class PlayerHealthUI : MonoBehaviour
     {
         float percent = (float)playerHealth.currentHealth / playerHealth.maxHealth;
         healthFill.fillAmount = percent;
-        healthFill.color = Color.Lerp(Color.red,Color.gray, percent);
     }
 
     private void OnDestroy()
     {
         if (playerHealth != null)
         {
-            playerHealth.onHit -= UpdateHealth;
+            playerHealth.onHealthChanged -= UpdateHealth;
             playerHealth.onDeath -= UpdateHealth;
         }
     }

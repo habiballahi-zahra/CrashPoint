@@ -6,15 +6,18 @@ public class Health : MonoBehaviour
     public int currentHealth;
     public bool isDead = false;
 
+    public delegate void HealthEvent();
+    public event HealthEvent onHealthChanged;
+
     public delegate void OnDeathEvent();
     public event OnDeathEvent onDeath;
-
-    public delegate void OnHitEvent();
-    public event OnHitEvent onHit;
+    public event HealthEvent onHit;
 
     private void Start()
     {
         currentHealth = maxHealth;
+        onHealthChanged?.Invoke(); // مقدار اولیه
+        onHit?.Invoke();
     }
 
     public void TakeDamage(int amount)
@@ -22,13 +25,24 @@ public class Health : MonoBehaviour
         if (isDead) return;
 
         currentHealth -= amount;
+        currentHealth = Mathf.Max(currentHealth, 0);
 
-        onHit?.Invoke(); // 🔥 این خط خیلی مهمه
+        onHealthChanged?.Invoke();
+        onHit?.Invoke();
 
         if (currentHealth <= 0)
         {
             Die();
         }
+    }
+
+    public void Heal(int amount)
+    {
+        if (isDead) return;
+
+        currentHealth = Mathf.Min(currentHealth + amount, maxHealth);
+        onHealthChanged?.Invoke();
+        onHit?.Invoke();
     }
 
     void Die()

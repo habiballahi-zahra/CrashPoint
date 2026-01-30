@@ -15,4 +15,4 @@ MonoBehaviour:
   itemName: Box
   icon: {fileID: 21300000, guid: 9dd803d9e22063e438c4ff56112de87a, type: 3}
   prefab: {fileID: 3503630340658518348, guid: 737f75f791cd71f4c9ede2aa3051204b, type: 3}
-  itemType: 1
+  itemType: 2
