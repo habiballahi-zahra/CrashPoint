@@ -42,7 +42,7 @@ public class Health : MonoBehaviour
 
         currentHealth = Mathf.Min(currentHealth + amount, maxHealth);
         onHealthChanged?.Invoke();
-        onHit?.Invoke();
+        
     }
 
     void Die()

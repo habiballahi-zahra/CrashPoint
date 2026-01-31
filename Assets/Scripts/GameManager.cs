@@ -58,6 +58,9 @@ public class GameManager : MonoBehaviour
             
         // قبل از Restart، کنترل‌های بازیکن را غیرفعال کن
         DisablePlayerControls();
+        //اگر ماوس درگیر بازیه  آزادش کن
+         Cursor.lockState = CursorLockMode.None;
+         Cursor.visible = true;
     }
 
     // تابع غیرفعال کردن کنترل‌های بازیکن
@@ -116,6 +119,9 @@ public class GameManager : MonoBehaviour
         
         // 5. کمی بیشتر صبر کن
         yield return new WaitForSeconds(0.05f);
+        //قفل کردن ماوس برای شلیک
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
         
         // 6. حالا صحنه را دوباره بارگذاری کن
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);

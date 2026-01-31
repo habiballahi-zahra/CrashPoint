@@ -24,17 +24,16 @@ public class Item : ScriptableObject
     // این متد زمانی صدا زده می‌شود که آیتم استفاده شود
      public virtual void Use(GameObject user)
     {
-        if (itemType == ItemType.Health)
-        {
-            Health health = user.GetComponent<Health>();
-            if (health != null && !health.isDead)
-            {
-                health.Heal(healAmount);
-                health.currentHealth =
-                    Mathf.Min(health.currentHealth + healAmount, health.maxHealth);
-            }
-          }
+        
+            if (itemType != ItemType.Health) return;
 
+            Health health = user.GetComponent<Health>();
+            if (health == null) return;
+
+            if (health.currentHealth >= health.maxHealth)
+                return;
+
+            health.Heal(healAmount);
     }
 }
 
