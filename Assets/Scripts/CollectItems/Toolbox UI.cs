@@ -22,8 +22,22 @@ public class ToolboxUI : MonoBehaviour
         // مخفی کردن پنل در شروع
         if (toolboxPanel != null)
             toolboxPanel.SetActive(false);
+                // Sync با Inventory
+        if (Inventory.Instance != null)
+        {
+            foreach (Item item in Inventory.Instance.items)
+            {
+                AddItem(item);
+            }
+        } 
     }
     
+
+
+
+ 
+
+
     void Update()
     {
         // نمایش/مخفی کردن با کلید Tab
