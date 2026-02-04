@@ -2,7 +2,9 @@ using UnityEngine;
 
 public class PlayerRespawn : MonoBehaviour
 {
+    // آخرین چک‌پوینت محلی (برای مرگ داخل Scene)
     private Vector3 lastCheckpoint;
+
     private CharacterController controller;
 
     private void Awake()
@@ -12,29 +14,47 @@ public class PlayerRespawn : MonoBehaviour
 
     private void Start()
     {
-        // اولین چک‌پوینت = محل شروع بازی
-        lastCheckpoint = transform.position;
+        // اگر از قبل چک‌پوینت ذخیره شده (مثلاً برگشت از Scene2)
+        if (CheckpointManager.Instance != null &&
+            CheckpointManager.Instance.hasCheckpoint)
+        {
+            lastCheckpoint = CheckpointManager.Instance.lastCheckpoint;
+
+            // انتقال امن پلیر
+            controller.enabled = false;
+            transform.position = lastCheckpoint;
+            controller.enabled = true;
+        }
+        else
+        {
+            // اولین ورود به بازی
+            lastCheckpoint = transform.position;
+        }
     }
 
+    /// <summary>
+    /// ثبت چک‌پوینت جدید
+    /// </summary>
     public void SetCheckpoint(Vector3 newCheckpoint)
     {
         lastCheckpoint = newCheckpoint;
+
+        // ذخیره Global برای Sceneهای بعدی
+        CheckpointManager.Instance.lastCheckpoint = newCheckpoint;
+        CheckpointManager.Instance.hasCheckpoint = true;
+
         Debug.Log("Checkpoint Set: " + newCheckpoint);
     }
 
-    
-
+    /// <summary>
+    /// ری‌اسپاون (مثلاً افتادن توی گدازه)
+    /// </summary>
     public void Respawn()
     {
         Debug.Log("Respawn!");
 
-        // خاموش کردن موقت CharacterController
         controller.enabled = false;
-
-        // انتقال پلیر
         transform.position = lastCheckpoint;
-
-        // روشن کردن دوباره
         controller.enabled = true;
     }
 }

@@ -9,6 +9,7 @@ TagManager:
   - Bullet
   - Lava
   - Checkpoint
+  - Gate
   layers:
   - Default
   - TransparentFX
