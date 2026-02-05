@@ -13,11 +13,23 @@ public class Interactable : MonoBehaviour
     
     private Vector3 initialPosition;
     private bool isPickedUp = false;
+    public string uniqueID;
+
     
     void Start()
     {
         initialPosition = transform.position;
         
+
+
+
+    if (SceneStateManager.Instance != null &&
+        SceneStateManager.Instance.IsItemPicked(uniqueID))
+    {
+        gameObject.SetActive(false);
+    }
+
+
     }
     
     void Update()
@@ -39,6 +51,7 @@ public class Interactable : MonoBehaviour
     // وقتی بازیکن آیتم را برمی‌دارد
     public void Pickup()
     {
+       
         if (isPickedUp) return;
         
         isPickedUp = true;

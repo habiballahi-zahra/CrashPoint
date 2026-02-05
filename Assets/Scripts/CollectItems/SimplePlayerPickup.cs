@@ -107,10 +107,15 @@ public class SimplePlayerPickup : MonoBehaviour
 
         if (toolboxUI != null)
             toolboxUI.AddItem(item);
+            Debug.Log("Pickedup*******");
     }
+      //  ثبت در StateManager
+    SceneStateManager.Instance.MarkItemPicked(currentInteractable.uniqueID);
 
-    Destroy(currentInteractable.gameObject);
-    currentInteractable = null;
+    //  حذف از صحنه
+    currentInteractable.gameObject.SetActive(false);
+    // Destroy(currentInteractable.gameObject);
+    // currentInteractable = null;
     HideUI();
 }
 
@@ -126,6 +131,8 @@ public class SimplePlayerPickup : MonoBehaviour
             return;
 
         Inventory.Instance.RemoveItem(requiredItem);
+        SceneStateManager.Instance.MarkSocketFilled(currentSocket.socketID);
+
 
            // آپدیت UI
         if (toolboxUI != null)
