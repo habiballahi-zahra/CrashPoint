@@ -6,20 +6,55 @@ using UnityEngine.SceneManagement;
 
 public class Menu : MonoBehaviour
 {
-    // Start is called before the first frame update
+    
+    [Header("Panels")]
+    public GameObject settingsPanel;
+    public GameObject helpPanel;
+
     void Start()
     {
-        
     }
 
-    // Update is called once per frame
-    void Update()
+    // ======================
+    //  نمایش پنل‌ها
+    // ======================
+
+
+
+    public void ShowSettings()
     {
-        
+
+        settingsPanel.SetActive(true);
+        helpPanel.SetActive(false);
     }
+
+    public void ShowHelp()
+    {
+
+        settingsPanel.SetActive(false);
+        helpPanel.SetActive(true);
+    }
+
+    public void ClosePannel()
+    {
+
+        settingsPanel.SetActive(false);
+        helpPanel.SetActive(false);
+    }
+
+    // ======================
+    // 🎮 دکمه‌ها
+    // ======================
 
     public void StartGame()
     {
-        // SceneManager.LoadScene(SceneManager.LoadScene("ddw"));
+        SceneManager.LoadScene("Level1Scene"); 
     }
+
+    public void QuitGame()
+    {
+        Application.Quit();
+        Debug.Log("Quit Game");
+    }
+    
 }
