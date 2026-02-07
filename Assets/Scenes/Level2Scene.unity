@@ -6115,6 +6115,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 926010617}
     - target: {fileID: 1586882663721187893, guid: b4a88aee496a96d49aee9abc46419cad, type: 3}
+      propertyPath: socketID
+      value: DoorSocket
+      objectReference: {fileID: 0}
+    - target: {fileID: 1586882663721187893, guid: b4a88aee496a96d49aee9abc46419cad, type: 3}
       propertyPath: placePoint
       value: 
       objectReference: {fileID: 117195932}
@@ -7552,7 +7556,10 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: f136c764383697f469cb30fcba56597d, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 3371956065218060917, guid: a7453cde4b8d357428d724a16d17ba27, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1995564992}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a7453cde4b8d357428d724a16d17ba27, type: 3}
 --- !u!4 &913990960 stripped
@@ -17091,8 +17098,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1995564992}
-  - component: {fileID: 1995564991}
   - component: {fileID: 1995564990}
+  - component: {fileID: 1995564993}
   m_Layer: 0
   m_Name: Checkpoint (14)
   m_TagString: Checkpoint
@@ -17112,7 +17119,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d25d92e61d82d04191207ce3db764b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!65 &1995564991
+--- !u!4 &1995564992
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1995564989}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0.7071068, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 5, y: 1, z: 3}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 913990960}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &1995564993
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -17133,21 +17155,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!4 &1995564992
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1995564989}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 5, y: 0.17999995, z: 57}
-  m_LocalScale: {x: 5, y: 1, z: 3}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2031983770
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -18888,6 +18895,7 @@ GameObject:
   - component: {fileID: 7736053447132094034}
   - component: {fileID: 7736053447132094031}
   - component: {fileID: 7736053447132094036}
+  - component: {fileID: 7736053447132094037}
   m_Layer: 3
   m_Name: ThirdAttackPerson
   m_TagString: Player
@@ -20558,6 +20566,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2df0ce8d46f814544a6a7b75bb7d10fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &7736053447132094037
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3358515369771465036}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e53fd8daed578af4284184b43c5ce959, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7814023781843738111
 GameObject:
   m_ObjectHideFlags: 0
@@ -20963,4 +20983,3 @@ SceneRoots:
   - {fileID: 426374675}
   - {fileID: 1755674525}
   - {fileID: 716818854}
-  - {fileID: 1995564992}

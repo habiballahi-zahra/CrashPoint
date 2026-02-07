@@ -1,22 +1,23 @@
-using UnityEngine;
+// using UnityEngine;
 
-public class LavaKill : MonoBehaviour
-{
-    private PlayerRespawn respawn;
+// public class LavaKill : MonoBehaviour
+// {
+//     public GameObject GAmeOverPannel;
+//     private PlayerRespawn respawn;
 
-    private void Start()
-    {
-        respawn = GetComponent<PlayerRespawn>();
-    }
+//     private void Start()
+//     {
+//         respawn = GetComponent<PlayerRespawn>();
+//     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        // اگر پلیر وارد گدازه شد
-        if (other.CompareTag("Lava"))
-        {
-            Debug.Log("Entered Trigger: " + other.name);
+//     private void OnTriggerEnter(Collider other)
+//     {
+//         // اگر پلیر وارد گدازه شد
+//         if (other.CompareTag("Lava"))
+//         {
+//             Debug.Log("Entered Trigger: " + other.name);
 
-            respawn.Respawn();
-        }
-    }
-}
+//             GAmeOverPannel.SetActive(true);
+//         }
+//     }
+// }
